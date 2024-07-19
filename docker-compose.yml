@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    networks:
+      - app-network
+    restart: always
+
+  books:
+    build: ./books-service
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+    restart: always
+    depends_on:
+      - mongodb
+
+networks:
+  app-network:
+  
+  
