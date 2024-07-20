@@ -28,6 +28,7 @@ class RatingsCollection():
             {'$sort': {'average': -1}},
             {'$limit': 3}
         ]
+        # TODO: understand this aggregate function with the pipeline - how does it work?
         top_rated_books_cursor = self.mongo_manager.collection.aggregate(pipeline)
         top_rated_books = list(top_rated_books_cursor)
 

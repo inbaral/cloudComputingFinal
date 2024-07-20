@@ -2,6 +2,7 @@ from flask_restful import Resource, reqparse
 from Models.RatingsCollection import RatingsCollection
 from Exceptions.NoMatchingItemException import NoMatchingItemException
 from flask import request
+
 class Ratings(Resource):
     def __init__(self, ratingsCollection: RatingsCollection) -> None:
         self._ratingsCollection = ratingsCollection()
@@ -10,7 +11,7 @@ class Ratings(Resource):
         
     def get(self) -> tuple:
         query = self._parser.parse_args()
-        print(f"Called get on Rating resource with query: {query}")
+        print(f"Called GET on Rating resource with query: {query}")
         try:
             if "id" in query:
                 id = query["id"]
@@ -22,7 +23,8 @@ class Ratings(Resource):
         
         except NoMatchingItemException as exception:
             return "No matching item: " + exception.message, 404
-
+        
+        # TODO: Do all exceptions has exception.args in python?
         except Exception as exception:
             return "Unexpected error: " + str(exception.args), 500
         

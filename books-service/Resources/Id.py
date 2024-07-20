@@ -12,6 +12,7 @@ class Id(Resource):
         self._dataValidator = dataValidator()
     
     def get(self, id: str) -> tuple:
+        print(f"Called GET on Id with id: {id}")
         try:
             return self._booksCollection.getBookById(id), 200
 
@@ -20,7 +21,8 @@ class Id(Resource):
 
         except NoMatchingItemException as exception:
             return "No matching item: " + exception.message, 404
-        
+
+        # TODO: Do all exceptions has exception.args in python?
         except Exception as exception:
             return "Unexpected error: " + str(exception.args), 500
         
@@ -28,6 +30,7 @@ class Id(Resource):
         print(f"Called DELETE on Id with id: {id}")
         try:
             deletedBookId = self._booksCollection.deleteBookById(id)
+            # TODO: Check if this is a json or a dictionary (relevant for all returns)
             return {"ID": deletedBookId}, 200
 
         except InvalidRequestBodyException as exception:
@@ -36,6 +39,7 @@ class Id(Resource):
         except NoMatchingItemException as exception:
             return "No matching item: " + exception.message, 404
         
+        # TODO: Do all exceptions has exception.args in python?
         except Exception as exception:
             return "Unexpected error: " + str(exception.args), 500
         
@@ -57,6 +61,7 @@ class Id(Resource):
         except UnsupportedMediaTypeException as exception:
             return "Unsupported media type: " + exception.message, 415
         
+        # TODO: Do all exceptions has exception.args in python?        
         except Exception as exception:
             return "Unexpected error: " + str(exception.args), 500
 

@@ -22,6 +22,7 @@ class Values(Resource):
             print("Didn't throw exception")
             newAverage = self._ratingsCollection.addRatingValueToBookAndReturnNewAverage(id, value)
             print(f"newAverage is: {newAverage}")
+            # TODO: Should return a json?
             return newAverage, 201
         
         except InvalidRequestBodyException as exception:
@@ -30,6 +31,7 @@ class Values(Resource):
         except UnsupportedMediaTypeException as exception:
             return "Unsupported media type: " + exception.message, 415
         
+        # TODO: Do all exceptions has exception.args in python? stringify the args?
         except Exception as exception:
             print(exception.args)
             return "Unexpected error: " + exception.args, 500

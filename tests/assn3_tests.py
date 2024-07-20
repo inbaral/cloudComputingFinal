@@ -1,9 +1,8 @@
-import pytest
 import requests
 
 BASE_URL = "http://127.0.0.1:5001"
 ids = []
-
+# TODO: Check for the message and content in addition to the status code?
 def test_post_books():
     books = [
         {"title": "Adventures of Huckleberry Finn", "ISBN": "9780520343641", "genre": "Fiction"},

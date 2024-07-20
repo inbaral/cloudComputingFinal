@@ -23,6 +23,7 @@ class DataProcessor():
         except NoMatchingItemsInApiGetCallException:
             raise
         
+        # TODO: Do all exceptions has exception.args in python? stringify the args?
         except Exception as exception:
             raise InternalServerException(f"Unable to construct full data for partial book data {partialBookData}. Exception is: {exception.args}")
         

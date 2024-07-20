@@ -12,6 +12,7 @@ import os
 
 @inject
 def main() -> None:
+    # TODO: Should API_KEY be in "secrets"?
     os.environ["API_KEY"] = "AIzaSyDZ-DCljJFFfiKF7gKJIZIvOQg4NijXY4k"
     
     app = Flask(__name__)
