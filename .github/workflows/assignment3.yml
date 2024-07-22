@@ -1,0 +1,35 @@
+name: assignment3
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log the time the workflow starts executing
+        run: echo $(date -Iminutes)\n >> log.txt
+      - name: Log Submitters names
+        run: echo Inbar Alfasi, Ofek Basson\n >> log.txt
+      - name: Checkout
+        uses: actions/checkout@v4
+      #Should build here only the books image?
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and export
+        uses: docker/build-push-action@v5
+        with:
+          # What is the context?
+          context: .
+          # What is the .setport?
+          file: ./books-service/Dockerfile.setport
+          # Should I give that another name like in the lecture (gave it a name with a prefix of the username from github secrets)? Didn't do that
+          # Should I save it also with the current time? Didn't do that
+          tags: books-service:latest
+          outputs: type-docker, dest=/tmp/image.tar
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: books-service
+          path: /tmp/image.tar
+
+
+  #test:
+  #query:

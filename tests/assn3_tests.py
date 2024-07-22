@@ -3,6 +3,8 @@ import requests
 BASE_URL = "http://127.0.0.1:5001"
 ids = []
 # TODO: Check for the message and content in addition to the status code?
+# TODO: Go through the assignment again and see that everything is completed
+# TODO: Forum questions
 def test_post_books():
     books = [
         {"title": "Adventures of Huckleberry Finn", "ISBN": "9780520343641", "genre": "Fiction"},
