@@ -32,6 +32,8 @@ jobs:
           name: books-service
           path: /tmp/image.tar
       # Should be in the end of the workflow
+      - name: List files for debugging
+        run: ls -alh
       - name: Upload log file
         if: always()
         uses: actions/upload-artifact@v4
