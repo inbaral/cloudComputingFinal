@@ -4,13 +4,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Log the time the workflow starts executing
         run: echo $(date -Iminutes)\n >> log.txt
       # Should remove the "/n"?
       - name: Log Submitters names
         run: echo Inbar Alfasi, Ofek Basson\n >> log.txt
-      - name: Checkout
-        uses: actions/checkout@v4
       #Should build here only the books image?
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
