@@ -7,10 +7,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Log the time the workflow starts executing
-        run: echo $(date -Iminutes)\n >> log.txt
-      # Should remove the "/n"?
+        run: echo $(date -Iminutes) >> log.txt
+      # Should add "/n" in the end of each line?
       - name: Log Submitters names
-        run: echo Inbar Alfasi, Ofek Basson\n >> log.txt
+        run: echo Inbar Alfasi, Ofek Basson >> log.txt
       #Should build here only the books image?
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -24,6 +24,7 @@ jobs:
           file: ./books-service/Dockerfile
           # Should I give that another name like in the lecture (gave it a name with a prefix of the username from github secrets)? Didn't do that
           # Should I save it also with the current time? Didn't do that
+          # What is the "-v2" he used for in the example? He used it for build and push but not for the Upload artifact.
           tags: books-service:latest
           outputs: type=docker, dest=/tmp/image.tar
       - name: Upload artifact
@@ -31,16 +32,44 @@ jobs:
         with:
           name: books-service
           path: /tmp/image.tar
-      # Should be in the end of the workflow
+      # Remove?
       - name: List files for debugging
         run: ls -alh
+        # Should be in the end of the workflow? Will it always work? Can I write to this file from different steps? Or I need to upload and downlowad it each step to add text to it?
       - name: Upload log file
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: log
           path: log.txt
+  test:
+      # Shouldn I specify on which machine it runs (did'nt do that in the second step in class)? do checkout? it is in the previous step
+    runs-on: ubuntu-latest
+    # What is that for?
+    needs: build
+    steps:
+      - name: Download image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: books-service
+          path: /tmp/image.tar
+      - name: Load image
+        run: docker load --input books-service/image.tar
+      - name: Check books-service image is loaded
+        run: docker image ls
+      - name: Run image in container
+        # Have to nderstand on which ports it should run
+        run: docker run -p5001:5001 books-service &
+      - name: Check container is running
+        run: docker ps
+      
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up python
+        uses: actions/setup-python@v4
+      # - name: Install dependencies
+        # run: |
 
 
-  #test:
+
   #query:
