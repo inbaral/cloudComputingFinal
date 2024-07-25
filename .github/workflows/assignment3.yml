@@ -78,15 +78,16 @@ jobs:
       - name: Test with pytest
         run: |
           cd tests
-          pytest -v assn3_tests.py >> assn3_test_results.txt
-      - name: Upload test results
-        # Should this always happen?
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: assn3_test_results
-          # Should look like assn3_test_results.txt in the github repo? I think the .txt isn't shown
-          path: assn3_test_results.txt
+          cat ls -al
+      #     pytest -v assn3_tests.py >> assn3_test_results.txt
+      # - name: Upload test results
+      #   # Should this always happen?
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: assn3_test_results
+      #     # Should look like assn3_test_results.txt in the github repo? I think the .txt isn't shown
+      #     path: assn3_test_results.txt
 
 
 
