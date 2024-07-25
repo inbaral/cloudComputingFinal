@@ -1,8 +1,11 @@
 FROM python:3.9.13-alpine
 
-WORKDIR /app
+# TODO: Should change to "WORKDIR /app"?
+WORKDIR /app.
 
 COPY . .
+
+RUN ls -al /app.
 
 RUN  pip install flask
 RUN  pip install flask_restful
