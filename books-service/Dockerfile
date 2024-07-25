@@ -5,6 +5,7 @@ WORKDIR /app.
 
 COPY . .
 
+# TODO: Remove after usage
 RUN ls -al /app.
 
 RUN  pip install flask
