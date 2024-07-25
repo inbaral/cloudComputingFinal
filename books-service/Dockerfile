@@ -5,9 +5,6 @@ WORKDIR /app.
 
 COPY . .
 
-# TODO: Remove after usage
-RUN ls -al /app.
-
 RUN  pip install flask
 RUN  pip install flask_restful
 RUN  pip install google-generativeai

@@ -19,7 +19,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           # What is the context?
-          context: .
+          context: ./books-service
           # What is the .setport?
           file: ./books-service/Dockerfile
           # Should I give that another name like in the lecture (gave it a name with a prefix of the username from github secrets)? Didn't do that
