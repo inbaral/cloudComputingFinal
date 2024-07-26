@@ -58,6 +58,7 @@ jobs:
       - name: Check books-service image is loaded
         run: docker image ls
       - name: Run images in containers using docker-compose
+        working-directory: ${{ github.workspace }}
         run: docker-compose up -d
       - name: Check container is running
         run: docker ps
