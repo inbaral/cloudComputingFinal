@@ -12,7 +12,7 @@ services:
 
   books:
     # TODO: Check if it loads the image built from the first step
-    build: books-service:latest
+    image: books-service:latest
     ports:
       - "5001:5001"
     networks:
