@@ -57,14 +57,10 @@ jobs:
         run: docker load --input /tmp/image.tar
       - name: Check books-service image is loaded
         run: docker image ls
-      - name: Print file & directories for debugging
-        run: ls
-      - name: Run image in container
-        # Have to nderstand on which ports it should run
-        run: docker run -p5001:5001 books-service &
+      - name: Run images in containers using docker-compose
+        run: docker-compose up -d
       - name: Check container is running
         run: docker ps
-      
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up python
