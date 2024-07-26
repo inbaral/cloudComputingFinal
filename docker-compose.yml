@@ -11,7 +11,8 @@ services:
     restart: always
 
   books:
-    build: books-service:latest
+    # TODO: Check if it loads the image built from the first step
+    build: books-service
     ports:
       - "5001:5001"
     networks:
