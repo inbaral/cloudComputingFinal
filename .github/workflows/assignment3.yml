@@ -76,10 +76,10 @@ jobs:
           pip install requests
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Test with pytest
+        # What is the difference between ">" and ">>"?
         run: |
           cd tests
-          ls -al
-          pytest -v assn3_tests.py >> assn3_test_results.txt
+          pytest -v assn3_tests.py > assn3_test_results.txt
           cat assn3_test_results.txt
       # - name: Upload test results
       #   # Should this always happen?
