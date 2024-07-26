@@ -57,6 +57,8 @@ jobs:
         run: docker load --input /tmp/image.tar
       - name: Check books-service image is loaded
         run: docker image ls
+      - name: Check directory
+        run: pwd
       - name: List files in the repository root
         run: ls -la
       - name: Run images in containers using docker-compose
