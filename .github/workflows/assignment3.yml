@@ -78,7 +78,7 @@ jobs:
       - name: Test with pytest
         run: |
           cd tests
-          /bin/bash -c "pytest -v assn3_tests.py" >> assn3_test_results.txt
+          pytest -v assn3_tests.py >> assn3_test_results.txt
       - name: Upload test results
         # Should this always happen?
         if: always()
@@ -86,7 +86,8 @@ jobs:
         with:
           name: assn3_test_results
           # Should look like assn3_test_results.txt in the github repo? I think the .txt isn't shown
-          path: assn3_test_results.txt
+          path: /tests/assn3_test_results.txt
+
 
 
 
