@@ -75,6 +75,7 @@ jobs:
           pip install pytest
           pip install requests
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      # TODO: Check if shell: /usr/bin/bash -e {0} that I get here is ok
       - name: Test with pytest
         run: |
           cd tests
@@ -88,7 +89,7 @@ jobs:
         with:
           name: assn3_test_results
           # Should look like assn3_test_results.txt in the github repo? I think the .txt isn't shown
-          path: /tests/assn3_test_results.txt
+          path: assn3_test_results.txt
 
 
 
