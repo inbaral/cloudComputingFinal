@@ -78,7 +78,9 @@ jobs:
       - name: Test with pytest
         run: |
           cd tests
+          ls
           pytest -v assn3_tests.py >> assn3_test_results.txt
+          ls
       - name: Upload test results
         # Should this always happen?
         if: always()
