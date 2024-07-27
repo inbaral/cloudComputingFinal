@@ -82,9 +82,35 @@ jobs:
           name: assn3_test_results
           # Should look like assn3_test_results.txt in the github repo? I think the .txt isn't shown
           path: tests/assn3_test_results.txt
-
-
-
-
-
-  #query:
+  query:
+    # Should I specify on which machine it runs (did'nt do that in the second step in class)? do checkout? it is in the previous step
+    runs-on: ubuntu-latest
+    # What is that for? Should I add write & build somehow?
+    needs: test
+    steps:
+      - name: Download image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: books-service
+          path: /tmp
+      - name: Load image
+        run: docker load --input /tmp/image.tar
+      # Necessary - I think it isn't. Good for debugging but not for production
+      - name: Check books-service image is loaded
+        run: docker image ls
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up python
+        uses: actions/setup-python@v4
+      - name: Run images in containers using docker-compose
+        run: docker-compose up -d
+      # Necessary - I think it isn't. Good for debugging but not for production
+      - name: Check container is running
+        run: docker ps
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          pip install requests
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      # TODO: Check if shell: /usr/bin/bash -e {0} that I get here is ok
