@@ -89,7 +89,7 @@ jobs:
         with:
           name: assn3_test_results
           # Should look like assn3_test_results.txt in the github repo? I think the .txt isn't shown
-          path: assn3_test_results.txt
+          path: tests/assn3_test_results.txt
 
 
 
