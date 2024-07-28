@@ -117,4 +117,4 @@ jobs:
       # TODO: Check if shell: /usr/bin/bash -e {0} that I get here is ok
       - name: Execute POST requests
         run: | 
-          curl -X POST http://localhost:5001/books -H "Content-Type: application/json" -d { "title":"Adventures of Huckleberry Finn", "ISBN":"9780520343641", "genre":"Fiction" }
+          curl -X POST http://localhost:5001/books -H "Content-Type: application/json" -d '{"title":"Adventures of Huckleberry Finn", "ISBN":"9780520343641", "genre":"Fiction"}'
