@@ -4,7 +4,6 @@ services:
   mongodb:
     image: mongo:latest
     ports:
-    # TODO: Should that be 27018?
       - "27018:27017"
     networks:
       - app-network

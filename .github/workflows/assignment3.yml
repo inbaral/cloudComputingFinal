@@ -25,7 +25,7 @@ jobs:
           # Should I give that another name like in the lecture (gave it a name with a prefix of the username from github secrets)? Didn't do that
           # Should I save it also with the current time? Didn't do that
           # What is the "-v2" he used for in the example? He used it for build and push but not for the Upload artifact.
-          tags: books-service:latest
+          tags: blabla:latest
           outputs: type=docker, dest=/tmp/image.tar
       - name: Upload artifact
         uses: actions/upload-artifact@v4
