@@ -58,7 +58,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
       - name: Run images in containers using docker-compose
         run: docker-compose up -d
       # Necessary - I think it isn't. Good for debugging but not for production
@@ -102,7 +102,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
       - name: Run images in containers using docker-compose
         run: docker-compose up -d
       # Necessary - I think it isn't. Good for debugging but not for production
