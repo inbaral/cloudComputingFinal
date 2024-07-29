@@ -144,5 +144,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: response
-          # Should look like assn3_test_results.txt in the github repo? I think the .txt isn't shown
           path: response.txt
