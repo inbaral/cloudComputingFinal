@@ -1,3 +1,2 @@
 ?ISBN=9780394558783
-?authors=Mark Twain
 ?publishedDate=1988
