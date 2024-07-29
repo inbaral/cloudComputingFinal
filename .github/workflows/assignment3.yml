@@ -138,6 +138,11 @@ jobs:
               echo "error $status_code" >> response.txt
             fi
           done < query.txt
-      # TODO: Remove
-      - name: Print response.txt
-        run: cat response.txt
+      - name: Upload response file
+        # Should this always happen?
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: response
+          # Should look like assn3_test_results.txt in the github repo? I think the .txt isn't shown
+          path: response.txt
