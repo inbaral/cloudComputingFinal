@@ -62,10 +62,10 @@ jobs:
       - name: Check books-service image is loaded
         run: docker image ls
       - name: Download log file
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: log
-          path: log.txt
+          path: .
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up python
