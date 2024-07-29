@@ -27,6 +27,12 @@ jobs:
           # What is the "-v2" he used for in the example? He used it for build and push but not for the Upload artifact.
           tags: books-service:latest
           outputs: type=docker, dest=/tmp/image.tar
+      - name: Log successful build
+        if: success()
+        run: echo image successfully built >> log.txt
+      - name: Log unsuccessful build
+        if: failure()
+        run: echo image not able to be built >> log.txt        
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -55,6 +61,11 @@ jobs:
       # Necessary - I think it isn't. Good for debugging but not for production
       - name: Check books-service image is loaded
         run: docker image ls
+      - name: Download log file
+        uses: actions/download-artifact@v2
+        with:
+          name: log
+          path: log.txt
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up python
