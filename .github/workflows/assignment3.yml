@@ -127,7 +127,7 @@ jobs:
         run: |
           touch response.txt
           while read querystring; do
-            response=$(curl -s -w "\n%{http_code}" "http://localhost:5001/books?$querystring")
+            response=$(curl -s -w "\n%{http_code}" "http://localhost:5001/books$querystring")
             body=$(echo "$response" | head -n -1)
             status_code=$(echo "$response" | tail -n 1)
             if [ "$status_code" -eq 200 ]; then
