@@ -1,6 +1,5 @@
 FROM python:3.9.13-alpine
 
-# TODO: Should change to "WORKDIR /app"?
 WORKDIR /app.
 
 COPY . .

@@ -3,7 +3,6 @@ from pymongo.errors import ConnectionFailure
 from bson import ObjectId
 
 class MongoDBManager:
-    # TODO: Change filename, make sure data is daved inside mongo, go through mongo implementation
     def __init__(self, collection):
         self.client = MongoClient("mongodb://mongodb:27017")
 
@@ -23,7 +22,6 @@ class MongoDBManager:
 
     def find_documents(self, query):
         return self.collection.find(query)
-    # TODO: Input tests for all those functions?
     def find_document_by_id(self, document_id):
         return self.collection.find_one({'_id': ObjectId(document_id)})
 

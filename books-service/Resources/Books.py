@@ -15,7 +15,6 @@ class Books(Resource):
         self._parser = reqparse.RequestParser()
         self.__addArgumentsToParser()
     
-    # TODO: Make sure that all of the routes exist (reduced points on HW1) + fixing HW2 correction (1pt)
     def post(self) -> tuple:
         try:
             requestBody = request.get_json(silent=True)
@@ -39,7 +38,6 @@ class Books(Resource):
         except InternalServerException as exception:
             return "Internal server error: " + exception.message, 500
         
-        # TODO: Do all exceptions has exception.args in python?
         except Exception as exception:
             return "Unexpected error: " + str(exception.args), 500
 
@@ -48,7 +46,6 @@ class Books(Resource):
         try:
             query = self._parser.parse_args()
             print(f"Called GET on Books resource with query: {query}")
-            # TODO: Add input tests?
             collection = self._booksCollection.getCollectionFilteredByQuery(query)
             return collection, 200
 
@@ -61,7 +58,6 @@ class Books(Resource):
         except InternalServerException as exception:
             return "Internal server error: " + exception.message, 500
         
-        # TODO: Do all exceptions has exception.args in python?
         except Exception as exception:
             print(exception)
             return "Unexpected error: ", 500

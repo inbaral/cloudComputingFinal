@@ -68,14 +68,12 @@ class BooksCollection:
         return id
 
     def updateSpecificDocumentFromCollection(self, idOfDocumentToUpdate: str, requestBody: dict) -> str:
-        # TODO: Check if I can assume to get a valid request body
         print(f"Inside 'updateSpecificDocumentFromCollection' (function of 'BooksCollection') with idOfDocumentToUpdate: {idOfDocumentToUpdate} and requestBody: {requestBody}")
         if 'id' not in requestBody:
             raise InvalidRequestBodyException("The request body has no 'id' field.")
         updatedResourceId = requestBody['id']
         self.mongo_manager.update_document({'_id': ObjectId(idOfDocumentToUpdate)}, {'$set': requestBody})
         valuesList = self.__getRatingsValuesList(idOfDocumentToUpdate)
-        # TODO: Why is it getting the values list of the given Id and then creates it again? I assume the "__getRatingsValuesList" removes the ValuesList but have to make sure
         self._ratingsCollection.createNewRating(requestBody, valuesList)
         return updatedResourceId
 
@@ -83,7 +81,6 @@ class BooksCollection:
         print(f"Inside '__getRatingsValuesList' (function of 'BooksCollection') with id: {id}")
         return self._ratingsCollection.getRatingById(id)["values"]
 
-    # TODO: Remove? not in usage...
     def __isQueryParameterSatisfiedByDocument(self, document: dict, queryKey: str, queryValue: str) -> bool:
         print(f"Inside '__isQueryParameterSatisfiedByDocument' (function of 'BooksCollection') with document: {document} and query: {queryKey}={queryValue}")
         documentValue = document.get(queryKey)

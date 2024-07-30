@@ -10,6 +10,5 @@ class Top(Resource):
         try:
             return self._ratingsCollection.getTopRatedBooks(), 200
 
-        # TODO: Do all exceptions has exception.args in python? stringify the args?        
         except Exception as exception:
             return "Unexpected error: " + exception.args, 500

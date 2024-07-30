@@ -18,7 +18,6 @@ class RatingsId(Resource):
         except NoMatchingItemException as exception:
             return "No matching item: " + exception.message, 404
 
-        # TODO: Do all exceptions has exception.args in python?        
         except Exception as exception:
             return "Unexpected error: " + str(exception.args), 500
     
