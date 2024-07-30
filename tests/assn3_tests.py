@@ -13,7 +13,7 @@ def test_post_books():
         assert response.status_code == 201
         response_json = response.json()
         ids.append(response_json["ID"])
-    assert len(ids) == 3
+    assert len(ids) == 40
 
 def test_get_book1():
     book_id = ids[0]
