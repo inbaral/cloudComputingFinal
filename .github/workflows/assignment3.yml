@@ -33,7 +33,6 @@ jobs:
         with:
           name: books-service
           path: /tmp/image.tar
-          overwrite: true
       - name: Upload log file
         if: always()
         uses: actions/upload-artifact@v4
