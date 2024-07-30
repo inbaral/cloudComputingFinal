@@ -62,10 +62,14 @@ jobs:
         run: docker-compose up -d
       - name: Log successful containers start
         if: success()
-        run: echo Container up and running >> log.txt
+        run: |
+          echo Container up and running >> log.txt
+          echo "true" > container_status.txt
       - name: Log unsuccessful containers start
         if: failure()
-        run: echo Container failed to run >> log.txt  
+        run: |
+          echo Container failed to run >> log.txt  
+          echo "false" > container_status.txt
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -77,10 +81,10 @@ jobs:
           cd tests
           pytest -v assn3_tests.py >> assn3_test_results.txt
       - name: Log successful tests results
-        if: success()
+        if: steps.run_container.outputs.container_status == 'true' && success()
         run: echo tests succeeded >> log.txt
       - name: Log unsuccessful tests results
-        if: failure()
+        if: steps.run_container.outputs.container_status == 'true' && failure()
         run: echo tests failed >> log.txt  
       - name: Upload test results
         if: always()
