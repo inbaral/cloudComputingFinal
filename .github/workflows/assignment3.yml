@@ -33,7 +33,6 @@ jobs:
         with:
           name: books-service
           path: /tmp/image.tar
-          # TODO: fix the ovveride
           overwrite: true
       - name: Upload log file
         if: always()
@@ -59,9 +58,6 @@ jobs:
         with:
           name: log
           path: .
-      # TODO: Remove
-      - name: Print log content
-        run: cat log.txt
       - name: Set up python
         uses: actions/setup-python@v5
       - name: Run images in containers using docker-compose
@@ -88,8 +84,6 @@ jobs:
       - name: Log unsuccessful tests results
         if: failure()
         run: echo tests failed >> log.txt  
-      - name: Print log content
-        run: cat log.txt
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
@@ -142,13 +136,14 @@ jobs:
             body=$(echo "$response" | head -n -1)
             status_code=$(echo "$response" | tail -n 1)
             if [ "$status_code" -eq 200 ]; then
-              echo "$querystring" >> response.txt
-              echo "$body" >> response.txt
+              echo "query: $querystring" >> response.txt
+              echo "response: $body" >> response.txt
             else
-              echo "$querystring" >> response.txt
+              echo "query: $querystring" >> response.txt
               echo "error $status_code" >> response.txt
             fi
           done < query.txt
+        # TODO: GET returns an array but suppose to return a json?
       - name: Upload response file
         if: always()
         uses: actions/upload-artifact@v4
