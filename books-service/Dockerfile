@@ -11,7 +11,7 @@ RUN  pip install dependency-injector
 RUN  pip install requests
 RUN  pip install uuid
 RUN  pip install datetime
-RUN pip install pymongo
+RUN pip install pymזסongo
 
 EXPOSE 5001
 
