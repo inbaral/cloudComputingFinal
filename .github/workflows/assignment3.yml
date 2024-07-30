@@ -8,7 +8,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Log the time the workflow starts executing
         run: echo $(date -Iminutes) >> log.txt
-      # TODO: Check that API works as expected + fix HW2 bug + test (422)
       - name: Log Submitters names
         run: echo Inbar Alfasi, Ofek Basson >> log.txt
       - name: Set up Docker Buildx
@@ -145,7 +144,6 @@ jobs:
               echo "error $status_code" >> response.txt
             fi
           done < query.txt
-        # TODO: GET returns an array but suppose to return a json?
       - name: Upload response file
         if: always()
         uses: actions/upload-artifact@v4
