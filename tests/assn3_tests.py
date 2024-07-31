@@ -27,7 +27,7 @@ def test_get_books():
     assert len(response.json()) == 3
 
 def test_post_invalid_book():
-    book4 = {"title": "No such book", "ISBN": "0000001111111", "genre": "fakeness"}
+    book4 = {"title": "No such book", "ISBN": "0000001111111", "genre": "Fiction"}
     response = requests.post(f"{BASE_URL}/books", json=book4)
     assert response.status_code in [400, 422, 500]
 
