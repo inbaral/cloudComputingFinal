@@ -63,12 +63,12 @@ jobs:
         if: success()
         run: |
           echo Container up and running >> log.txt
-          echo "true" > container_status.txt
+          echo "container_status=true" >> $GITHUB_ENV
       - name: Log unsuccessful containers start
         if: failure()
         run: |
           echo Container failed to run >> log.txt  
-          echo "false" > container_status.txt
+          echo "container_status=false" >> $GITHUB_ENV
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -79,20 +79,11 @@ jobs:
         run: |
           cd tests
           pytest -v assn3_tests.py >> assn3_test_results.txt
-      # TODO: Remove
-      - name: Print container_status.txt for debugging
-        run: cat container_status.txt
-      # TODO: Remove
-      - name: Print steps.run_container.outputs.container_status
-        run: cat steps.run_container.outputs.container_status
-      # TODO: Remove
-      - name: Print steps.run_container.outputs.container_status == 'true'
-        run: cat steps.run_container.outputs.container_status == 'true'
       - name: Log successful tests results
-        if: steps.run_container.outputs.container_status == 'true' && success()
+        if: env.container_status == 'true' && success()
         run: echo tests succeeded >> log.txt
       - name: Log unsuccessful tests results
-        if: steps.run_container.outputs.container_status == 'true' && failure()
+        if: env.container_status == 'true' && failure()
         run: echo tests failed >> log.txt  
       - name: Upload test results
         if: always()
