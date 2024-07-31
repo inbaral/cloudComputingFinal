@@ -47,7 +47,7 @@ class Books(Resource):
             query = self._parser.parse_args()
             print(f"Called GET on Books resource with query: {query}")
             collection = self._booksCollection.getCollectionFilteredByQuery(query)
-            return collection, 400
+            return collection, 200
 
         except InvalidRequestBodyException as exception:
             return "Unprocessable Content: " + exception.message, 422
