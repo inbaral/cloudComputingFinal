@@ -131,7 +131,10 @@ jobs:
           curl -X POST http://localhost:5001/books -H "Content-Type: application/json" -d '{"title": "Second Foundation", "ISBN":"9780553293364", "genre":"Science Fiction"}'
       # TODO: Remove, for debugging purposes
       - name: down images in containers using docker-compose
-        run: docker-compose down -d
+        run: docker-compose down
+      # TODO: Remove, for debugging purposes
+      - name: Check for running docker containers - debugging
+        run: docker ps
       - name: Execute requests from query.txt
         run: |
           touch response.txt
