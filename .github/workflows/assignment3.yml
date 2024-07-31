@@ -113,14 +113,14 @@ jobs:
         run: docker load --input /tmp/image.tar
       - name: Set up python
         uses: actions/setup-python@v5
-      # - name: Run images in containers using docker-compose
-      #   run: docker-compose up -d
-      # - name: Install dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install pytest
-      #     pip install requests
-      #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run images in containers using docker-compose
+        run: docker-compose up -d
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          pip install requests
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Execute POST requests
         run: | 
           curl -X POST http://localhost:5001/books -H "Content-Type: application/json" -d '{"title":"Adventures of Huckleberry Finn", "ISBN":"9780520343641", "genre":"Fiction"}'
@@ -129,6 +129,9 @@ jobs:
           curl -X POST http://localhost:5001/books -H "Content-Type: application/json" -d '{"title":"The Adventures of Tom Sawyer", "ISBN":"9780195810400", "genre":"Fiction"}'
           curl -X POST http://localhost:5001/books -H "Content-Type: application/json" -d '{"title": "I, Robot", "ISBN":"9780553294385", "genre":"Science Fiction"}'
           curl -X POST http://localhost:5001/books -H "Content-Type: application/json" -d '{"title": "Second Foundation", "ISBN":"9780553293364", "genre":"Science Fiction"}'
+      # TODO: Remove, for debugging purposes
+      - name: down images in containers using docker-compose
+        run: docker-compose down -d
       - name: Execute requests from query.txt
         run: |
           touch response.txt
