@@ -13,10 +13,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build and export
-        uses: docker/build-push-action@v5sss
+        uses: docker/build-push-action@v5
         with:
           context: ./books-service
-          file: ./books-service/Dockerfile
+          file: ./books-service/Dockerfiled
           tags: books-service:latest
           outputs: type=docker, dest=/tmp/image.tar
       - name: Log successful build
