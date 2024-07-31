@@ -79,6 +79,9 @@ jobs:
         run: |
           cd tests
           pytest -v assn3_tests.py >> assn3_test_results.txt
+      # TODO: Remove
+      - name: Print container_status.txt for debugging
+        run: cat container_status.txt
       - name: Log successful tests results
         if: steps.run_container.outputs.container_status == 'true' && success()
         run: echo tests succeeded >> log.txt
