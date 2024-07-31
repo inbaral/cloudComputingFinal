@@ -81,7 +81,13 @@ jobs:
           pytest -v assn3_tests.py >> assn3_test_results.txt
       # TODO: Remove
       - name: Print container_status.txt for debugging
-        run: cat container_status.txt
+        run: cat container_status.txt for debugging
+      # TODO: Remove
+      - name: Print steps.run_container.outputs.container_status
+        run: cat steps.run_container.outputs.container_status
+      # TODO: Remove
+      - name: Print steps.run_container.outputs.container_status == 'true'
+        run: cat steps.run_container.outputs.container_status == 'true'
       - name: Log successful tests results
         if: steps.run_container.outputs.container_status == 'true' && success()
         run: echo tests succeeded >> log.txt
