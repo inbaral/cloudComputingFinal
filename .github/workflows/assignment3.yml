@@ -81,7 +81,7 @@ jobs:
           pytest -v assn3_tests.py >> assn3_test_results.txt
       # TODO: Remove
       - name: Print container_status.txt for debugging
-        run: cat container_status.txt for debugging
+        run: cat container_status.txt
       # TODO: Remove
       - name: Print steps.run_container.outputs.container_status
         run: cat steps.run_container.outputs.container_status
