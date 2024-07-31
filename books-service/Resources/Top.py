@@ -9,5 +9,6 @@ class Top(Resource):
         print("Called GET on Top resource")
         try:
             return self._ratingsCollection.getTopRatedBooks(), 200
+
         except Exception as exception:
             return "Unexpected error: " + exception.args, 500

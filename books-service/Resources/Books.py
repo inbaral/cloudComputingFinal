@@ -18,7 +18,7 @@ class Books(Resource):
     def post(self) -> tuple:
         try:
             requestBody = request.get_json(silent=True)
-            print(f"Called post on Books resource with requestBody: {requestBody}")
+            print(f"Called POST on Books resource with requestBody: {requestBody}")
             self._dataValidator.validateBooksPostRequestBody(requestBody)
             if self._booksCollection.doBookWithGivenIsbnAlreadyExist(requestBody["ISBN"]):
                 raise InvalidRequestBodyException("A book with the same ISBN already exist in the collection")

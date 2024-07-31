@@ -10,7 +10,7 @@ services:
     restart: always
 
   books:
-    build: ./books-service
+    image: books-service:latest
     ports:
       - "5001:5001"
     networks:

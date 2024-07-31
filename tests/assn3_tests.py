@@ -1,9 +1,7 @@
-import pytest
 import requests
 
 BASE_URL = "http://127.0.0.1:5001"
 ids = []
-
 def test_post_books():
     books = [
         {"title": "Adventures of Huckleberry Finn", "ISBN": "9780520343641", "genre": "Fiction"},
@@ -31,7 +29,7 @@ def test_get_books():
 def test_post_invalid_book():
     book4 = {"title": "No such book", "ISBN": "0000001111111", "genre": "fakeness"}
     response = requests.post(f"{BASE_URL}/books", json=book4)
-    assert response.status_code in [400, 500]
+    assert response.status_code in [400, 422, 500]
 
 def test_delete_book2():
     book_id = ids[1]

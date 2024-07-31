@@ -17,7 +17,7 @@ class RatingsId(Resource):
         
         except NoMatchingItemException as exception:
             return "No matching item: " + exception.message, 404
-        
+
         except Exception as exception:
             return "Unexpected error: " + str(exception.args), 500
     

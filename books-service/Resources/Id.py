@@ -12,6 +12,7 @@ class Id(Resource):
         self._dataValidator = dataValidator()
     
     def get(self, id: str) -> tuple:
+        print(f"Called GET on Id with id: {id}")
         try:
             return self._booksCollection.getBookById(id), 200
 
@@ -20,7 +21,7 @@ class Id(Resource):
 
         except NoMatchingItemException as exception:
             return "No matching item: " + exception.message, 404
-        
+
         except Exception as exception:
             return "Unexpected error: " + str(exception.args), 500
         

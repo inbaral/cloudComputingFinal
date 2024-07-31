@@ -22,7 +22,6 @@ class MongoDBManager:
 
     def find_documents(self, query):
         return self.collection.find(query)
-
     def find_document_by_id(self, document_id):
         return self.collection.find_one({'_id': ObjectId(document_id)})
 
