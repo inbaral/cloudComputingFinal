@@ -23,7 +23,7 @@ def test_get_book1():
 
 def test_get_books():
     response = requests.get(f"{BASE_URL}/books")
-    assert response.status_code == 200
+    assert response.status_code == 404
     assert len(response.json()) == 3
 
 def test_post_invalid_book():
